@@ -3,12 +3,21 @@ local game = {}
 local system = {}
 
 local e1 = {
-    position = {x = 100,y = 100}
+    position = {x = 100,y = 100},
+    velocity = {x = 10,y = 20}
 }
 
 local e2 = {
-    position = {x = 400,y = 200}
+    position = {x = 400,y = 200},
+    velocity = {x = 10,y = -20}
 }
+
+system.movement = tiny.processingSystem()
+system.movement.filter = tiny.requireAll("velocity", "position")
+function system.movement:process(entity, dt)
+    entity.position.x = entity.position.x + entity.velocity.x * dt
+    entity.position.y = entity.position.y + entity.velocity.y * dt
+end
 
 system.draw = tiny.processingSystem()
 system.draw.filter = tiny.requireAll("position")
@@ -20,7 +29,8 @@ function love.load()
     game.world = tiny.world(
     e1,
     e2,
-    system.draw
+    system.draw,
+    system.movement
     )
 end
 
