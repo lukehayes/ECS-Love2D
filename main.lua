@@ -2,6 +2,8 @@ local tiny = require("libs/tiny")
 local game = {}
 local system = {}
 
+
+
 local e1 = {
     position = {x = 100,y = 100},
     velocity = {x = 10,y = 20}
@@ -22,7 +24,7 @@ end
 system.draw = tiny.processingSystem()
 system.draw.filter = tiny.requireAll("position")
 function system.draw:process(entity)
-    love.graphics.rectangle("fill", entity.position.x, entity.position.y, 10,10)
+    love.graphics.rectangle("fill", entity.position.x, entity.position.y, 1,1)
 end
 
 function love.load()
@@ -32,6 +34,17 @@ function love.load()
     system.draw,
     system.movement
     )
+
+    for i = 1,10000,1 do
+        local e = {}
+        e.position = {x = math.random(100,300), y = math.random(200,500)}
+
+        if(math.random(0,1) == 1) then
+        e.velocity = {x = math.random(-100,300), y = math.random(-200,500)}
+        end
+
+        game.world:add(e)
+    end
 end
 
 
