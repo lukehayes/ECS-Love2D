@@ -3,18 +3,21 @@ local mathUtils = require("libs/math")
 local game = { world = tiny.world()}
 local system = {}
 local position = require("components/position")
+local size     = require("components/size")
 local velocity = require("components/velocity")
 local shooter  = require("components/shooter")
 
 local e1 = {
     position = position(100,100),
     velocity = velocity(10,20, 10, 30),
+    size     = size(10,10),
     shooter  = shooter(2, 2)
 }
 
 local e2 = {
     position = position(400,200),
     velocity = velocity(10,-20, 20,10),
+    size     = size(10,10),
 }
 
 
@@ -80,7 +83,7 @@ function system.draw:process(entity)
         --love.graphics.print("Pew", entity.position.x + 5, entity.position.y + 5)
     else
         love.graphics.setColor(1,1,1, 0.5)
-        love.graphics.rectangle("fill", entity.position.x, entity.position.y, 10,10)
+        love.graphics.rectangle("fill", entity.position.x, entity.position.y, entity.size.w,entity.size.h)
     end
 end
 
@@ -96,8 +99,9 @@ function love.load()
 
     for i = 1,100,1 do
         local e = {
-            position = position(math.random(0,500), math.random(0,500)),
-            velocity = velocity(-40,-20, math.random(10,100), math.random(100,200))
+            position = position(100 + math.random(0,500), 100 + math.random(0,500)),
+            velocity = velocity(-40,-20, math.random(10,100), math.random(100,200)),
+            size     = size(math.random(5,20), math.random(5,20))
         }
 
         if(math.random(0,1) == 1) then
