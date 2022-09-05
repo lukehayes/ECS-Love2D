@@ -39,6 +39,6 @@ function love.update(dt)
     game.world:update(dt)
 end
 function love.draw(dt)
-    print(system.draw:update(dt))
+    system.draw:update(dt)
 end
 
