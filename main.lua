@@ -1,5 +1,5 @@
 local tiny = require("libs/tiny")
-local game = {}
+local game = { world = tiny.world()}
 local system = {}
 
 local e1 = {
@@ -26,12 +26,12 @@ function system.draw:process(entity)
 end
 
 function love.load()
-    game.world = tiny.world(
-    e1,
-    e2,
-    system.draw,
-    system.movement
-    )
+
+    tiny.addSystem(game.world, system.movement)
+    tiny.addSystem(game.world, system.draw)
+
+    tiny.addEntity(game.world, e1)
+    tiny.addEntity(game.world, e2)
 end
 
 
