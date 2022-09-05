@@ -1,16 +1,19 @@
 local tiny = require("libs/tiny")
 local game = { world = tiny.world()}
 local system = {}
+local position = require("components/position")
+local velocity = require("components/velocity")
 
 local e1 = {
-    position = {x = 100,y = 100},
-    velocity = {x = 10,y = 20}
+    position = position(100,100),
+    velocity = velocity(10,20),
 }
 
 local e2 = {
-    position = {x = 400,y = 200},
-    velocity = {x = 10,y = -20}
+    position = position(400,200),
+    velocity = velocity(10,-20)
 }
+
 
 system.movement = tiny.processingSystem()
 system.movement.filter = tiny.requireAll("velocity", "position")
@@ -34,11 +37,10 @@ function love.load()
     tiny.addEntity(game.world, e2)
 end
 
-
 function love.update(dt)
     game.world:update(dt)
 end
+
 function love.draw(dt)
     system.draw:update(dt)
 end
-
