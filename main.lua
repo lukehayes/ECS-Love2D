@@ -1,11 +1,11 @@
 local tiny = require("libs/tiny")
 local mathUtils = require("libs/math")
 local game = require("core/game")
-local system = {}
 local position = require("components/position")
 local size     = require("components/size")
 local velocity = require("components/velocity")
 local shooter  = require("components/shooter")
+require("systems/system")
 
 local e1 = {
     position = position(100,100),
@@ -20,23 +20,6 @@ local e2 = {
     size     = size(10,10),
 }
 
-
-system.movement = tiny.processingSystem()
-system.movement.filter = tiny.requireAll("velocity", "position")
-system.movement.filter = tiny.rejectAny("bullet")
-function system.movement:process(entity, dt)
-
-    if(entity.velocity.x >= entity.velocity.max_speed) then
-        entity.velocity.x = entity.velocity.max_speed
-    end
-
-    if(entity.velocity.y >= entity.velocity.max_speed) then
-        entity.velocity.y = -entity.velocity.y
-    end
-
-    entity.position.x = entity.position.x + entity.velocity.acceleration * dt
-    entity.position.y = entity.position.y + entity.velocity.acceleration * dt
-end
 
 system.shooter = tiny.processingSystem()
 system.shooter.filter = tiny.requireAll("shooter")
