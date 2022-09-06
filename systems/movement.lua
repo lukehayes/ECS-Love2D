@@ -1,8 +1,6 @@
 local tiny = require("libs/tiny")
 local game = require("core/game")
-require("systems/system")
-
-print(system)
+local system = require("systems/system")
 
 system.movement = tiny.processingSystem()
 system.movement.filter = tiny.requireAll("velocity", "position")
@@ -21,4 +19,5 @@ function system.movement:process(entity, dt)
     entity.position.y = entity.position.y + entity.velocity.acceleration * dt
 end
 
-tiny.addSystem(game.world, system.movement)
+return system
+
