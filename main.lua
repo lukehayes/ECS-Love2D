@@ -1,11 +1,20 @@
 local tiny = require("libs/tiny")
 local mathUtils = require("libs/math")
+local system = require("systems/system")
 local game = { world = tiny.world()}
-local system = {}
 local position = require("components/position")
 local size     = require("components/size")
 local velocity = require("components/velocity")
 local shooter  = require("components/shooter")
+
+local draw = require("systems/draw")
+--local movement = require("systems/movement")
+--system.movement = movement
+--tiny.addSystem(game.world, system.movement)
+
+
+--print(movement)
+--print(#system)
 
 local e1 = {
     position = position(100,100),
@@ -21,95 +30,66 @@ local e2 = {
 }
 
 
-system.movement = tiny.processingSystem()
-system.movement.filter = tiny.requireAll("velocity", "position")
-system.movement.filter = tiny.rejectAny("bullet")
-function system.movement:process(entity, dt)
 
-    if(entity.velocity.x >= entity.velocity.max_speed) then
-        entity.velocity.x = entity.velocity.max_speed
-    end
+--system.shooter = tiny.processingSystem()
+--system.shooter.filter = tiny.requireAll("shooter")
+--function system.shooter:process(entity, dt)
 
-    if(entity.velocity.y >= entity.velocity.max_speed) then
-        entity.velocity.y = -entity.velocity.y
-    end
+    --local bullet = {
+        --position = position(entity.position.x, entity.position.y),
+        --velocity = velocity(10,20, 30, 130),
+        --color = {r=1,g=0.3,b=0.5},
+        --bullet = true,
+        --target = self.world.entities[math.random(1, #self.world.entities)]
+   --}
 
-    entity.position.x = entity.position.x + entity.velocity.acceleration * dt
-    entity.position.y = entity.position.y + entity.velocity.acceleration * dt
-end
+    --entity.shooter.charge = entity.shooter.charge + dt
 
-system.shooter = tiny.processingSystem()
-system.shooter.filter = tiny.requireAll("shooter")
-function system.shooter:process(entity, dt)
+    --if(entity.shooter.charge >= entity.shooter.rate)then
+        --self.world:addEntity(bullet)
+        --entity.shooter.charge = 0
+    --end
 
-    local bullet = {
-        position = position(entity.position.x, entity.position.y),
-        velocity = velocity(10,20, 30, 130),
-        color = {r=1,g=0.3,b=0.5},
-        bullet = true,
-        target = self.world.entities[math.random(1, #self.world.entities)]
-   }
+--end
 
-    entity.shooter.charge = entity.shooter.charge + dt
+--system.bullet = tiny.processingSystem()
+--system.bullet.filter = tiny.requireAll("bullet", "position", "velocity")
+--function system.bullet:process(entity, dt)
 
-    if(entity.shooter.charge >= entity.shooter.rate)then
-        self.world:addEntity(bullet)
-        entity.shooter.charge = 0
-    end
-
-end
-
-system.bullet = tiny.processingSystem()
-system.bullet.filter = tiny.requireAll("bullet", "position", "velocity")
-function system.bullet:process(entity, dt)
-
-    local angle = mathUtils.angle(
-        entity.position.x,
-        entity.position.y,
-        entity.target.position.x,
-        entity.target.position.y
-        )
-    entity.position.x = entity.position.x + math.cos(angle) + entity.velocity.acceleration * dt
-    entity.position.y = entity.position.y + math.sin(angle) + entity.velocity.acceleration * dt
-end
-
-system.draw = tiny.processingSystem()
-system.draw.filter = tiny.requireAll("position")
-function system.draw:process(entity)
-
-    if(entity.color)then
-        love.graphics.setColor(entity.color.r, entity.color.g, entity.color.b)
-        love.graphics.rectangle("fill", entity.position.x, entity.position.y, 1,1)
-        --love.graphics.print("Pew", entity.position.x + 5, entity.position.y + 5)
-    else
-        love.graphics.setColor(1,1,1, 0.5)
-        love.graphics.rectangle("fill", entity.position.x, entity.position.y, entity.size.w,entity.size.h)
-    end
-end
+    --local angle = mathUtils.angle(
+        --entity.position.x,
+        --entity.position.y,
+        --entity.target.position.x,
+        --entity.target.position.y
+        --)
+    --entity.position.x = entity.position.x + math.cos(angle) + entity.velocity.acceleration * dt
+    --entity.position.y = entity.position.y + math.sin(angle) + entity.velocity.acceleration * dt
+--end
 
 function love.load()
 
-    tiny.addSystem(game.world, system.movement)
-    tiny.addSystem(game.world, system.draw)
-    tiny.addSystem(game.world, system.shooter)
-    tiny.addSystem(game.world, system.bullet)
+    --tiny.addSystem(game.world, system.movement)
+    tiny.addSystem(game.world, draw)
+    --tiny.addSystem(game.world, system.draw)
+    --tiny.addSystem(game.world, system.shooter)
+    --tiny.addSystem(game.world, system.bullet)
 
-    tiny.addEntity(game.world, e1)
-    tiny.addEntity(game.world, e2)
+    --tiny.addEntity(game.world, e1)
+    --tiny.addEntity(game.world, e2)
 
-    for i = 1,100,1 do
-        local e = {
-            position = position(100 + math.random(0,500), 100 + math.random(0,500)),
-            velocity = velocity(-40,-20, math.random(10,100), math.random(100,200)),
-            size     = size(math.random(5,20), math.random(5,20))
-        }
+    --for i = 1,100,1 do
+        --local e = {
+            --position = position(100 + math.random(0,500), 100 + math.random(0,500)),
+            --velocity = velocity(-40,-20, math.random(10,100), math.random(100,200)),
+            --size     = size(math.random(5,20), math.random(5,20))
+        --}
 
-        if(math.random(0,1) == 1) then
-            e.shooter = shooter(math.random(1.0, 5.0), 2)
-        end
+        --if(math.random(0,1) == 1) then
+            --e.shooter = shooter(math.random(1.0, 5.0), 2)
+        --end
 
-        tiny.addEntity(game.world, e)
-    end
+        --tiny.addEntity(game.world, e)
+    --end
 end
 
 function love.update(dt)
