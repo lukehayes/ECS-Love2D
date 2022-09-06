@@ -25,7 +25,16 @@ end
 system.draw = tiny.processingSystem()
 system.draw.filter = tiny.requireAll("position")
 function system.draw:process(entity)
-    love.graphics.rectangle("fill", entity.position.x, entity.position.y, 10,10)
+
+    if(entity.color)then
+        love.graphics.setColor(entity.color.r, entity.color.g, entity.color.b)
+        love.graphics.rectangle("fill", entity.position.x, entity.position.y, 5,5)
+        --love.graphics.print("Pew", entity.position.x + 5, entity.position.y + 5)
+    else
+        love.graphics.setColor(1,1,1, 0.5)
+        love.graphics.rectangle("fill", entity.position.x, entity.position.y, entity.size.w,entity.size.h)
+    end
+
 end
 
 function love.load()
@@ -35,6 +44,20 @@ function love.load()
 
     tiny.addEntity(game.world, e1)
     tiny.addEntity(game.world, e2)
+
+    --for i = 1,100,1 do
+        --local e = {
+            --position = position(100 + math.random(0,500), 100 + math.random(0,500)),
+            --velocity = velocity(-40,-20, math.random(10,100), math.random(100,200)),
+            --size     = size(math.random(5,20), math.random(5,20))
+        --}
+
+        --if(math.random(0,1) == 1) then
+            --e.shooter = shooter(math.random(1.0, 5.0), 2)
+        --end
+
+        --tiny.addEntity(game.world, e)
+    --end
 end
 
 function love.update(dt)
