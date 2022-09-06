@@ -1,6 +1,6 @@
 local tiny = require("libs/tiny")
 local mathUtils = require("libs/math")
-local game = { world = tiny.world()}
+local game = require("core/game")
 local system = {}
 local position = require("components/position")
 local size     = require("components/size")
