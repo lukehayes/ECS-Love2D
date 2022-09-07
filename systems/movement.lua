@@ -22,8 +22,6 @@ function system.movement:process(entity, dt)
 
     entity.position.x = entity.position.x + entity.velocity.x
     entity.position.y = entity.position.y + entity.velocity.y
-
-    print(entity.velocity.x)
 end
 
 return system
