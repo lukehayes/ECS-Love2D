@@ -13,6 +13,8 @@ function system.movement:process(entity, dt)
 
     if(entity.velocity.y >= entity.velocity.max_speed) then
         entity.velocity.y = -entity.velocity.y
+        --entity.sound:play()
+        love.audio.play(entity.sound.jump)
     end
 
     entity.velocity.x = entity.velocity.x + entity.velocity.acceleration * dt
