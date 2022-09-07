@@ -15,8 +15,13 @@ function system.movement:process(entity, dt)
         entity.velocity.y = -entity.velocity.y
     end
 
-    entity.position.x = entity.position.x + entity.velocity.acceleration * dt
-    entity.position.y = entity.position.y + entity.velocity.acceleration * dt
+    entity.velocity.x = entity.velocity.x + entity.velocity.acceleration * dt
+    entity.velocity.y = entity.velocity.y + entity.velocity.acceleration * dt
+
+    entity.position.x = entity.position.x + entity.velocity.x
+    entity.position.y = entity.position.y + entity.velocity.y
+
+    print(entity.velocity.x)
 end
 
 return system
