@@ -2,7 +2,10 @@ local tiny = require("libs/tiny")
 local system = require("systems/system")
 
 system.draw = tiny.processingSystem()
-system.draw.filter = tiny.requireAll("position")
+
+-- Added sprite qualifier, so for something to be drawn then
+-- it must have at least a position and a sprite(boolean value).
+system.draw.filter = tiny.requireAll("position", "sprite")
 function system.draw:process(entity)
 
     if(entity.color)then
