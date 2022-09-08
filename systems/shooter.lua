@@ -17,7 +17,6 @@ function system.shooter:process(entity, dt)
 
     if(entity.shooter.charge >= entity.shooter.rate)then
         self.world:addEntity(bullet)
-        love.audio.play(entity.sound.fire)
         entity.shooter.charge = 0
     end
 end
