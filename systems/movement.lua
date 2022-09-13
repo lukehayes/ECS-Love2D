@@ -8,7 +8,7 @@ system.movement.filter = tiny.rejectAny("bullet")
 function system.movement:process(entity, dt)
 
     if(entity.velocity.x >= entity.velocity.max_speed) then
-        entity.velocity.x = entity.velocity.max_speed
+        entity.velocity.x = -entity.velocity.max_speed
     end
 
     if(entity.velocity.y >= entity.velocity.max_speed) then
