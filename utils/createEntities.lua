@@ -1,6 +1,6 @@
 local tiny      = require("libs/tiny")
 local game      = require("core/game")
-local sound    = require("components/sound")
+local sound     = require("components/sound")
 local color     = require("components/color")
 
 function createTestEntities(count)
@@ -10,8 +10,8 @@ function createTestEntities(count)
     for i = 1,count,1 do
         local e = {
             position = position(100 + math.random(0,500), 100 + math.random(0,500)),
-            velocity = velocity(0,0, math.random(0.2,1), math.random(2,5)),
-            size     = size(10,10),
+            velocity = velocity(0,0, math.random(-3,3), math.random(-5.0, 5.0)),
+            size     = size(),
             color    = color(),
             sound    = {
                 jump = sound("assets/sounds/powerUp.mp3"),
