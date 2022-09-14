@@ -7,6 +7,9 @@ system.movement.filter = tiny.requireAll("velocity", "position")
 system.movement.filter = tiny.rejectAny("bullet")
 function system.movement:process(entity, dt)
 
+    -- Update Velocity
+    --
+    --
     if(entity.velocity.x >= entity.velocity.max_speed) then
         entity.velocity.x = -entity.velocity.max_speed
     end
@@ -15,11 +18,24 @@ function system.movement:process(entity, dt)
         entity.velocity.y = -entity.velocity.y
     end
 
+    -- Bounds Checking
+    --
+    --
+    if(entity.position.x < 10 or entity.position.x > 570) then
+        entity.velocity.x = -entity.velocity.x
+    end
+
+    if(entity.position.y < 10 or entity.position.y > 570 ) then
+        entity.velocity.y = -entity.velocity.y
+    end
+
     entity.velocity.x = entity.velocity.x + entity.velocity.acceleration * dt
     entity.velocity.y = entity.velocity.y + entity.velocity.acceleration * dt
 
     entity.position.x = entity.position.x + entity.velocity.x
     entity.position.y = entity.position.y + entity.velocity.y
+
+
 end
 
 return system
