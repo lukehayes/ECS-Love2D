@@ -1,16 +1,19 @@
 -- Include the library.
 local lovetoys = require('libs.lovetoys')
 
+-- Make lovetoys libs global for now.
+lovetoys.initialize({globals = true, debug = true})
+
+-- Components
+local Position = require('components.Position')
+local Velocity = require('components.Velocity')
+
 -- Initialize:
 -- debug = true will enable library console logs
 -- globals = true will register lovetoys classes in the global namespace
 -- so you can access i.e. Entity() in addition to lovetoys.Entity()
-lovetoys.initialize({globals = true, debug = true})
 
 function love.load()
-    -- Define a Component class.
-    local Position = Component.create("position", {"x", "y"}, {x = 0, y = 0})
-    local Velocity = Component.create("velocity", {"vx", "vy"})
 
     -- Create and initialize a new Entity.
     -- Note we can access Entity() in the global
