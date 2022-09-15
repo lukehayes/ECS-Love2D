@@ -12,24 +12,15 @@ local Velocity = require('components.Velocity')
 local MoveSystem = require('systems.Move')
 local DrawSystem = require('systems.Draw')
 
+-- Entities
+local player = require('entities.Player')
+
 -- Initialize:
 -- debug = true will enable library console logs
 -- globals = true will register lovetoys classes in the global namespace
 -- so you can access i.e. Entity() in addition to lovetoys.Entity()
 
 function love.load()
-
-    -- Create and initialize a new Entity.
-    -- Note we can access Entity() in the global
-    -- namespace since we used globals = true in 
-    -- the lovetoys initialization.
-    local player = Entity()
-    player:initialize()
-
-    -- Add position and velocity components. We are passing custom default values.
-    player:add(Position(150, 25))
-    player:add(Velocity(100, 100))
-
 
     -- Finally, we setup an Engine.
     engine = Engine()
