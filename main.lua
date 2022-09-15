@@ -8,6 +8,10 @@ lovetoys.initialize({globals = true, debug = true})
 local Position = require('components.Position')
 local Velocity = require('components.Velocity')
 
+-- Systems
+local MoveSystem = require('systems.Move')
+local DrawSystem = require('systems.Draw')
+
 -- Initialize:
 -- debug = true will enable library console logs
 -- globals = true will register lovetoys classes in the global namespace
@@ -25,37 +29,7 @@ function love.load()
     -- Add position and velocity components. We are passing custom default values.
     player:add(Position(150, 25))
     player:add(Velocity(100, 100))
-    
-    -- Create a System class as lovetoys.System subclass.
-    local MoveSystem = class("MoveSystem", System)
 
-    -- Define this System's requirements.
-    function MoveSystem:requires()
-        return {"position", "velocity"}
-    end
-
-    function MoveSystem:update(dt)
-        for _, entity in pairs(self.targets) do
-            local position = entity:get("position")
-            local velocity = entity:get("velocity")
-            position.x = position.x + velocity.vx * dt
-            position.y = position.y + velocity.vy * dt
-        end
-    end
-
-    -- Create a draw System.
-    local DrawSystem = class("DrawSystem", System)
-
-    -- Define this System requirements.
-    function DrawSystem:requires()
-        return {"position"}
-    end
-
-    function DrawSystem:draw()
-        for _, entity in pairs(self.targets) do
-            love.graphics.rectangle("fill", entity:get("position").x, entity:get("position").y, 10, 10)
-        end
-    end
 
     -- Finally, we setup an Engine.
     engine = Engine()
