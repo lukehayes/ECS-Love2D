@@ -12,6 +12,16 @@ function MoveSystem:update(dt)
         local velocity = entity:get("velocity")
         position.x = position.x + velocity.vx * dt
         position.y = position.y + velocity.vy * dt
+
+        -- Bounds Checking
+
+        if(position.x < 0 or position.x > 790) then
+            velocity.vx = -velocity.vx
+        end
+
+        if(position.y < 0 or position.y > 590) then
+            velocity.vy = -velocity.vy
+        end
     end
 end
 
