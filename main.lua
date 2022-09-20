@@ -14,6 +14,7 @@ local DrawSystem = require('systems.Draw')
 
 -- Entities
 local player = require('entities.Player')
+require('factories.EntityFactory')
 
 -- Initialize:
 -- debug = true will enable library console logs
@@ -25,6 +26,9 @@ function love.load()
     -- Finally, we setup an Engine.
     engine = Engine()
     engine:addEntity(player)
+    
+    -- Generate some test entities.
+    generate(100)
 
     -- Let's add the MoveSystem to the Engine. Its update() 
     -- method will be invoked within any Engine:update() call.
