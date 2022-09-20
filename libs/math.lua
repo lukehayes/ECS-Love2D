@@ -77,4 +77,17 @@ function findIntersect(l1p1x,l1p1y, l1p2x,l1p2y, l2p1x,l2p1y, l2p2x,l2p2y, seg1,
     return x,y
 end
 
+-- Simple AABB bounding box collision.
+--
+function collides(a,b)
+
+  local entity_a = a:get("position")
+  local entity_b = b:get("position")
+
+  return entity_a.x < entity_b.x+entity_b.w and
+         entity_b.x < entity_a.x+entity_a.w and
+         entity_a.y < entity_b.y+entity_b.h and
+         entity_b.y < entity_a.y+entity_a.h
+end
+
 return math
