@@ -1,6 +1,7 @@
 local Position = require('components.Position')
 local Velocity = require('components.Velocity')
 local Color    = require('components.Color')
+local Collision    = require('components.Collision')
 
 function generate(count)
     local entities = {}
@@ -12,6 +13,8 @@ function generate(count)
             math.random(10,400),
             math.random(10,500))
         )
+
+        --ent:add(Collison())
 
         ent:add(Velocity(
             math.random(-600,600),
