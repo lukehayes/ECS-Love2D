@@ -1,5 +1,8 @@
 -- Create a System class as lovetoys.System subclass.
 local MoveSystem = class("MoveSystem", System)
+local mathUtil = require("libs.math")
+
+local count = 0
 
 -- Define this System's requirements.
 function MoveSystem:requires()
@@ -13,8 +16,17 @@ function MoveSystem:update(dt)
         position.x = position.x + velocity.vx * dt
         position.y = position.y + velocity.vy * dt
 
-        -- Bounds Checking
+        -- TODO Collision detection not working at all atm.
+        -- Collision Detection
+        --
+        for _, other in pairs(self.targets) do
+            if mathUtil.collides(entity, other) then
+                engine:removeEntity(entity)
+            end
+        end
 
+        -- Bounds Checking
+        --
         if(position.x < 0 or position.x > 790) then
             velocity.vx = -velocity.vx
         end
