@@ -87,10 +87,21 @@ function math.collides(a,b)
   local entity_a = a:get("position")
   local entity_b = b:get("position")
 
+
   return entity_a.x < entity_b.x+entity_b.w and
          entity_b.x < entity_a.x+entity_a.w and
          entity_a.y < entity_b.y+entity_b.h and
          entity_b.y < entity_a.y+entity_a.h
+end
+
+-- Simple AABB bounding box collision with
+-- explicit entity values.
+--
+function math.bb(x1,y1,w1,h1, x2,y2,w2,h2)
+  return x1 < x2+w2 and
+         x2 < x1+w1 and
+         y1 < y2+h2 and
+         y2 < y1+h1
 end
 
 return math
