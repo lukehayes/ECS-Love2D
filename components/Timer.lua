@@ -1,8 +1,9 @@
-return Component.create("timer",
-{"duration", "elapsed","loop","finished"},
+return Component.create('timer',
+{'duration', 'elapsed','repeats','finished', 'active'},
 {
     duration = 1,
     elapsed  = 0,
-    loop     = true,
-    finished = false
+    repeats  = true,
+    finished = false,
+    active   = true
 })
