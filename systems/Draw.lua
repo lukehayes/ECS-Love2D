@@ -12,6 +12,14 @@ function DrawSystem:draw()
 
         local position = entity:get("position")
 
+        if(entity:has("timer")) then
+            local timer = entity:get("timer")
+
+            if(timer.finished) then
+                entity:get("color").b = 0
+            end
+        end
+
         love.graphics.setColor(
             entity:get("color").r,
             entity:get("color").g,
