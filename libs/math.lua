@@ -79,7 +79,10 @@ end
 
 -- Simple AABB bounding box collision.
 --
-function collides(a,b)
+function math.collides(a,b)
+
+  assert(a ~= nil, "First collision argument is nil.")
+  assert(b ~= nil, "Second collision argument is nil.")
 
   local entity_a = a:get("position")
   local entity_b = b:get("position")
