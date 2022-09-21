@@ -26,9 +26,9 @@ function love.load()
     -- Finally, we setup an Engine.
     engine = Engine()
     engine:addEntity(player)
-    
+
     -- Generate some test entities.
-    generate(100)
+    generate(10)
 
     -- Let's add the MoveSystem to the Engine. Its update() 
     -- method will be invoked within any Engine:update() call.
