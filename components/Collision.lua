@@ -1,4 +1,5 @@
-return Component.create("collision",{"bound_x", "bound_y", "has_hit"},
+return Component.create("collision",
+{"bound_x", "bound_y", "has_hit"},
 {
     bound_x = 16,
     bound_y = 16,
