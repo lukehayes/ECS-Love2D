@@ -15,7 +15,7 @@ local TimerSystem = require('systems.Timer')
 
 -- Entities
 local player = require('entities.Player')
-require('factories.EntityFactory')
+local entity_factory = require('factories.EntityFactory')
 
 -- Initialize:
 -- debug = true will enable library console logs
@@ -29,7 +29,7 @@ function love.load()
     engine:addEntity(player)
 
     -- Generate some test entities.
-    generate(10)
+    entity_factory.generate(10)
 
     -- Let's add the MoveSystem to the Engine. Its update() 
     -- method will be invoked within any Engine:update() call.

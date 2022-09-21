@@ -1,10 +1,13 @@
+-- Components
 local Position = require('components.Position')
 local Velocity = require('components.Velocity')
 local Color    = require('components.Color')
 local Collision    = require('components.Collision')
-local Timer    = require('components.Timer')
 
-function generate(count)
+-- Entity Factory Table
+local entity_factory = {}
+
+function entity_factory.generate(count)
     local entities = {}
 
     for i = 1,count do
@@ -17,9 +20,6 @@ function generate(count)
 
         --ent:add(Collison())
 
-        ent:add(Timer(
-        ))
-
         ent:add(Velocity(
             math.random(-600,600),
             math.random(-600,600)
@@ -31,10 +31,11 @@ function generate(count)
             math.random(0.6,1.0)
         ))
 
-        --table.insert(entities, ent)
         engine:addEntity(ent)
     end
 
     return entities
 end
+
+return entity_factory
 
