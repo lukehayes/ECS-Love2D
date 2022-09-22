@@ -8,6 +8,21 @@ local Timer    = require('components.Timer')
 -- Entity Factory Table
 local entity_factory = {}
 
+function entity_factory.generateVelTest()
+       a = Entity()
+       a:add(Position(10,10))
+       a:add(Velocity(130,0, false))
+       a:add(Color(1,0,0))
+
+       b = Entity()
+       b:add(Position(160,10))
+       b:add(Velocity(false))
+       b:add(Color(0,0,1))
+
+       engine:addEntity(a)
+       engine:addEntity(b)
+end
+
 function entity_factory.generate(count)
     local entities = {}
 
@@ -19,7 +34,7 @@ function entity_factory.generate(count)
             math.random(10,500))
         )
 
-        ent:add(Timer(math.random(2,5)))
+        --ent:add(Timer(math.random(2,5)))
 
         --ent:add(Collison())
 
