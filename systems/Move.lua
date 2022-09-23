@@ -2,8 +2,6 @@
 local MoveSystem = class("MoveSystem", System)
 local mathUtil = require("libs.math")
 
-local count = 0
-
 -- Define this System's requirements.
 function MoveSystem:requires()
     return {"position", "velocity"}
@@ -29,13 +27,10 @@ function MoveSystem:update(dt)
             end
 
             if mathUtil.collides(entity, other) then
-                count = count + 1
                 position.w = math.random(2,150)
                 position.h = math.random(2,150)
             end
         end
-
-        print(count)
 
         -- Bounds Checking
         --
