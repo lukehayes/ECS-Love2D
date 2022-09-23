@@ -10,20 +10,32 @@ function MoveSystem:requires()
 end
 
 function MoveSystem:update(dt)
-    for _, entity in pairs(self.targets) do
+    for i, entity in pairs(self.targets) do
         local position = entity:get("position")
         local velocity = entity:get("velocity")
         position.x = position.x + velocity.vx * dt
         position.y = position.y + velocity.vy * dt
 
-        -- TODO Collision detection not working at all atm.
+        -- TODO Build a move efficient collision detection.
         -- Collision Detection
         --
-        for _, other in pairs(self.targets) do
+        for j, other in pairs(self.targets) do
+
+            -- Check if the current entity(i) is the same entity
+            -- as in the inner loop(j), if it is, move on
+            -- because it will always be true.
+            if i == j then
+                break
+            end
+
             if mathUtil.collides(entity, other) then
-                engine:removeEntity(entity)
+                count = count + 1
+                position.w = math.random(2,150)
+                position.h = math.random(2,150)
             end
         end
+
+        print(count)
 
         -- Bounds Checking
         --
