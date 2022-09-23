@@ -26,7 +26,7 @@ function DrawSystem:draw()
             entity:get("color").b
         )
 
-        love.graphics.rectangle("fill", position.x, position.y, size, size)
+        love.graphics.rectangle("fill", position.x, position.y, position.w, position.h)
     end
 end
 
