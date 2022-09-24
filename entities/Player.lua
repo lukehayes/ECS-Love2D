@@ -1,4 +1,5 @@
 local Position = require('components.Position')
+local Player   = require('components.Player')
 local Velocity = require('components.Velocity')
 local Color    = require('components.Color')
 
@@ -13,6 +14,7 @@ player:initialize()
 player:add(Position(150, 25))
 player:add(Velocity(100, 100))
 player:add(Color())
+player:add(Player())
 
 
 return player

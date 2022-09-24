@@ -1,0 +1,4 @@
+return Component.create("player",
+{},
+{
+})
