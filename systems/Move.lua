@@ -9,6 +9,9 @@ end
 
 function MoveSystem:update(dt)
     for i, entity in pairs(self.targets) do
+
+        --if(entity:has("player")) then break end
+
         local position = entity:get("position")
         local velocity = entity:get("velocity")
         position.x = position.x + velocity.vx * dt
