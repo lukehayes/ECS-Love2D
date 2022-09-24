@@ -9,9 +9,10 @@ local Position = require('components.Position')
 local Velocity = require('components.Velocity')
 
 -- Systems
-local MoveSystem  = require('systems.Move')
-local DrawSystem  = require('systems.Draw')
-local TimerSystem = require('systems.Timer')
+local MoveSystem   = require('systems.Move')
+local DrawSystem   = require('systems.Draw')
+local TimerSystem  = require('systems.Timer')
+local PlayerSystem = require('systems.Player')
 
 -- Entities
 local player = require('entities.Player')
@@ -29,7 +30,7 @@ function love.load()
     engine:addEntity(player)
 
     -- Generate some test entities.
-    entity_factory.generate(10)
+    --entity_factory.generate(10)
 
     -- Let's add the MoveSystem to the Engine. Its update() 
     -- method will be invoked within any Engine:update() call.
@@ -38,6 +39,8 @@ function love.load()
     -- This will be a 'draw' System, so the
     -- Engine will call its draw method.
     engine:addSystem(DrawSystem(), "draw")
+
+    engine:addSystem(PlayerSystem(), "update")
 
     engine:addSystem(TimerSystem())
 end
