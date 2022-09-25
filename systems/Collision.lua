@@ -4,7 +4,7 @@ local mathUtil = require("libs.math")
 
 -- Define this System's requirements.
 function CollisionSystem:requires()
-    return {"position", "velocity"}
+    return {"position", "velocity", "collision"}
 end
 
 function CollisionSystem:update(dt)
