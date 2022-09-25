@@ -39,24 +39,6 @@ function MoveSystem:update(dt)
             position.y = position.y + velocity.vy * dt
         end
 
-        -- TODO Build a move efficient collision detection.
-        -- Collision Detection
-        --
-        for j, other in pairs(self.targets) do
-
-            -- Check if the current entity(i) is the same entity
-            -- as in the inner loop(j), if it is, move on
-            -- because it will always be true.
-            if i == j then
-                break
-            end
-
-            if mathUtil.collides(entity, other) then
-                position.w = math.random(2,150)
-                position.h = math.random(2,150)
-            end
-        end
-
         -- Bounds Checking
         --
         if(position.x < 0 or position.x > 790) then

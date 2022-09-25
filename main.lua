@@ -13,6 +13,7 @@ local MoveSystem   = require('systems.Move')
 local DrawSystem   = require('systems.Draw')
 local TimerSystem  = require('systems.Timer')
 local PlayerSystem = require('systems.Player')
+local CollisionSystem = require('systems.Collision')
 
 -- Entities
 local player = require('entities.Player')
@@ -40,6 +41,8 @@ function love.load()
     -- This will be a 'draw' System, so the
     -- Engine will call its draw method.
     engine:addSystem(DrawSystem(), "draw")
+
+    engine:addSystem(CollisionSystem())
 
     --engine:addSystem(PlayerSystem(), "update")
 
