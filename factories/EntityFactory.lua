@@ -39,8 +39,8 @@ function entity_factory.generate(count)
         --ent:add(Collison())
 
         ent:add(Velocity(
-            math.random(-600,600),
-            math.random(-600,600)
+            math.random(-100,100),
+            math.random(-100,100)
         ))
 
         ent:add(Color(
