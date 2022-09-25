@@ -40,9 +40,9 @@ function love.load()
     -- Engine will call its draw method.
     engine:addSystem(DrawSystem(), "draw")
 
-    engine:addSystem(PlayerSystem(), "update")
+    --engine:addSystem(PlayerSystem(), "update")
 
-    engine:addSystem(TimerSystem())
+    --engine:addSystem(TimerSystem())
 end
 
 function love.update(dt)
