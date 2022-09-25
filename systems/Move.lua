@@ -15,7 +15,9 @@ function MoveSystem:update(dt)
         local position = entity:get("position")
         local velocity = entity:get("velocity")
 
+        -- TODO Player Movement should be extracted out into player system at some point.
         -- Player Movement
+        -- 
         if(entity:has("player")) then
             if love.keyboard.isDown('a') then
                 position.x = position.x + velocity.vx * dt
@@ -36,12 +38,6 @@ function MoveSystem:update(dt)
             position.x = position.x + velocity.vx * dt
             position.y = position.y + velocity.vy * dt
         end
-
-
-
-
-
-
 
         -- TODO Build a move efficient collision detection.
         -- Collision Detection
