@@ -36,7 +36,7 @@ function entity_factory.generate(count)
 
         --ent:add(Timer(math.random(2,5)))
 
-        --ent:add(Collison())
+        ent:add(Collison())
 
         ent:add(Velocity(
             math.random(-100,100),
