@@ -16,8 +16,8 @@ function entity_factory.generateVelTest()
 
        b = Entity()
        b:add(Position(160,10))
-       b:add(Velocity(false))
-       b:add(Color(0,0,1))
+       b:add(Velocity(0,0, false))
+       b:add(Color(0,1,0))
 
        engine:addEntity(a)
        engine:addEntity(b)
