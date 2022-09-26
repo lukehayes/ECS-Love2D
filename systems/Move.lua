@@ -22,31 +22,35 @@ function MoveSystem:update(dt)
 
             if love.keyboard.isDown('d') then
                 velocity.vx = velocity.vx + velocity.ax
-            else
-                velocity.vx = velocity.vx - velocity.drag
-            end
 
-            if love.keyboard.isDown('a') then
+            elseif love.keyboard.isDown('a') then
                 velocity.vx = velocity.vx - velocity.ax
-            else
-                velocity.vx = velocity.vx + velocity.drag
-            end
-
-            if love.keyboard.isDown('s') then
+                --velocity.vx = velocity.vx - velocity.drag
+            elseif love.keyboard.isDown('s') then
                 velocity.vy = velocity.vy + velocity.ay
-            else
-                velocity.vy = velocity.vy - velocity.drag
-            end
 
-            if love.keyboard.isDown('w') then
+            elseif love.keyboard.isDown('w') then
                 velocity.vy = velocity.vy - velocity.ay
+
             else
-                velocity.vy = velocity.vy + velocity.drag
+
+                if velocity.vx <=  0 then
+                    velocity.vx = 0
+                else
+                    velocity.vx = velocity.vx - velocity.drag
+                end
+
+                if velocity.vx >=  velocity.mx then
+                    velocity.vx = velocity.mx
+                else
+                    velocity.vx = velocity.vx - velocity.drag
+                end
+
+                velocity.vy = velocity.vy - velocity.drag
             end
 
             position.x = position.x + velocity.vx * dt
             position.y = position.y + velocity.vy * dt
-        else
         end
 
         -- Bounds Checking
