@@ -13,13 +13,15 @@ function entity_factory.generateVelTest()
        a:add(Position(10,10))
        a:add(Velocity(130,0, false))
        a:add(Color(1,0,0))
+       a:add(Collision())
 
        b = Entity()
-       b:add(Position(160,10))
+       b:add(Position(160,20))
        b:add(Velocity(0,0, false))
        b:add(Color(0,1,0))
+       b:add(Collision())
 
-       engine:addEntity(a)
+       --egine:addEntity(a)
        engine:addEntity(b)
 end
 
@@ -36,7 +38,7 @@ function entity_factory.generate(count)
 
         --ent:add(Timer(math.random(2,5)))
 
-        ent:add(Collison())
+        ent:add(Collision())
 
         ent:add(Velocity(
             math.random(-100,100),
