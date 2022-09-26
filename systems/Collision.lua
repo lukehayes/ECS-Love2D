@@ -11,6 +11,7 @@ function CollisionSystem:update(dt)
     for i, entity in pairs(self.targets) do
 
         local position = entity:get("position")
+        local col      = entity:get("collision")
 
         -- TODO Build a move efficient collision detection.
         -- Collision Detection
@@ -24,10 +25,17 @@ function CollisionSystem:update(dt)
                 break
             end
 
-            if mathUtil.collides(entity, other) then
+            if not col.hit and mathUtil.collides(entity, other)then
                 position.w = math.random(2,150)
                 position.h = math.random(2,150)
+                print("Collision")
+                col.hit = true
             end
+
+            if col.hit then
+                col.hit = false
+            end
+
         end
     end
 end
