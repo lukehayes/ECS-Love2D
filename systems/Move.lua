@@ -21,7 +21,10 @@ function MoveSystem:update(dt)
         if(entity:has("player")) then
 
             if love.keyboard.isDown('d') then
-                velocity.vx = velocity.vx + velocity.ax
+
+                if not velocity.vx > velocity.mx then
+                    velocity.vx = velocity.vx + velocity.ax
+                end
 
             elseif love.keyboard.isDown('a') then
                 velocity.vx = velocity.vx - velocity.ax
@@ -34,10 +37,10 @@ function MoveSystem:update(dt)
 
             else
 
-                if velocity.vx <=  0 then
-                    velocity.vx = 0
-                else
+                if velocity.vx >=  (-velocity.mx) then
                     velocity.vx = velocity.vx - velocity.drag
+                else
+                    velocity.vx = 0
                 end
 
                 if velocity.vx >=  velocity.mx then
@@ -46,8 +49,22 @@ function MoveSystem:update(dt)
                     velocity.vx = velocity.vx - velocity.drag
                 end
 
-                velocity.vy = velocity.vy - velocity.drag
+                if velocity.vy <=  (-velocity.my) then
+                    velocity.vy = velocity.vy - velocity.drag
+                else
+                    velocity.vy = 0
+                end
+
+                if velocity.vy >=  velocity.my then
+                    velocity.vy = velocity.my
+                else
+                    velocity.vy = velocity.vy - velocity.drag
+                end
+
+                --velocity.vy = velocity.vy - velocity.drag
             end
+
+                print(velocity.vx, velocity.mx)
 
             position.x = position.x + velocity.vx * dt
             position.y = position.y + velocity.vy * dt
