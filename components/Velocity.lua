@@ -1,12 +1,13 @@
 return Component.create("velocity",
-{"vx", "vy", "solid", "ax", "ay", "drag", "mx", "my"},
+{"x", "y", "solid", "ax", "ay", "drag", "mx", "my", "moving"},
 {
-    vx =0,
-    vy = 0,
+    x =0,
+    y = 0,
     solid=false,
     ax = 5,
     ay = 5,
     drag = 1,
     mx = 100,
-    my = 100
+    my = 100,
+    moving = false
 })
