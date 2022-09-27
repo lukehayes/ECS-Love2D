@@ -14,21 +14,21 @@ function PlayerSystem:update(dt)
     --position.x = position.x + velocity.vx * dt
     --position.y = position.y + velocity.vy * dt
 
-    if love.keyboard.isDown('a') then
-        position.x = position.x + velocity.vx * dt
-    end
+    --if love.keyboard.isDown('a') then
+        --position.x = position.x + velocity.vx * dt
+    --end
 
-    if love.keyboard.isDown('d') then
-        position.x = position.x - velocity.vx * dt
-    end
+    --if love.keyboard.isDown('d') then
+        --position.x = position.x - velocity.vx * dt
+    --end
 
-    if love.keyboard.isDown('w') then
-        position.y = position.y + velocity.vy * dt
-    end
+    --if love.keyboard.isDown('w') then
+        --position.y = position.y + velocity.vy * dt
+    --end
 
-    if love.keyboard.isDown('s') then
-        position.y = position.y - velocity.vy * dt
-    end
+    --if love.keyboard.isDown('s') then
+        --position.y = position.y - velocity.vy * dt
+    --end
 
 end
 
