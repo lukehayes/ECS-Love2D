@@ -21,20 +21,32 @@ function MoveSystem:update(dt)
         -- 
         if(entity:has("player")) then
 
-
             if(love.keyboard.isDown('a')) then
                 velocity.x = velocity.x - velocity.ax
 
             elseif(love.keyboard.isDown('d')) then
                 velocity.x = velocity.x + velocity.ax
 
-            else
-                local sign = mathUtil.sign(velocity.x)
+            elseif(love.keyboard.isDown('w')) then
+                velocity.y = velocity.y - velocity.ay
 
-                if sign == 1 then
+            elseif(love.keyboard.isDown('s')) then
+                velocity.y = velocity.y + velocity.ay
+
+            else
+                local sign_x = mathUtil.sign(velocity.x)
+                local sign_y = mathUtil.sign(velocity.y)
+
+                if sign_x == 1 then
                     velocity.x = velocity.x - velocity.drag
-                elseif sign == -1 then
+                elseif sign_x == -1 then
                     velocity.x = velocity.x + velocity.drag
+                end
+
+                if sign_y == 1 then
+                    velocity.y = velocity.y - velocity.drag
+                elseif sign_y == -1 then
+                    velocity.y = velocity.y + velocity.drag
                 end
 
             end
