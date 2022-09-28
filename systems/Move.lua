@@ -48,18 +48,13 @@ function MoveSystem:update(dt)
                 elseif sign_y == -1 then
                     velocity.y = velocity.y + velocity.drag
                 end
-
+                --Find the sign (+/-) of velocity and then Velocity = velocity + (const * -sign)
             end
-
-            --Find the sign (+/-) of velocity and then Velocity = velocity + (const * -sign)
-
-            print("--")
-            print("Vx ", velocity.x)
-            print("Vy ", velocity.y)
-
-            position.x = position.x + velocity.x * dt
-            position.y = position.y + velocity.y * dt
         end
+
+        -- Move the entity regardless if it is a player or not.
+        position.x = position.x + velocity.x * dt
+        position.y = position.y + velocity.y * dt
 
         -- Bounds Checking
         --
