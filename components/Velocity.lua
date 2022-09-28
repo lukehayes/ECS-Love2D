@@ -6,7 +6,7 @@ return Component.create("velocity",
     solid=false,
     ax = 5,
     ay = 5,
-    drag = 1,
+    drag = 5,
     mx = 100,
     my = 100,
     moving = false
