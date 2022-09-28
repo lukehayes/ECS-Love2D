@@ -20,13 +20,20 @@ function DrawSystem:draw()
             end
         end
 
-        love.graphics.setColor(
-            entity:get("color").r,
-            entity:get("color").g,
-            entity:get("color").b
-        )
+        if entity:has("Sprite") then
+            local sprite = entity:get("Sprite")
+            print(sprite.path)
+            --love.graphics.draw(sprite.image, position.x, position.y)
+        else
+            love.graphics.setColor(
+                entity:get("color").r,
+                entity:get("color").g,
+                entity:get("color").b
+            )
 
-        love.graphics.rectangle("fill", position.x, position.y, position.w, position.h)
+            love.graphics.rectangle("fill", position.x, position.y, position.w, position.h)
+        end
+
     end
 end
 
