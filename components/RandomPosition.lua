@@ -1,7 +1,10 @@
-return Component.create(
-"random_position",
-{"x", "y"},
-{
-    x = math.random(10,500),
-    y = math.random(10,500)
-})
+local lovetoys = require "libs.lovetoys"
+local RandomPosition = lovetoys.class("RandomPosition")
+
+
+function RandomPosition:initialize()
+    self.x = math.random(10,500),
+    self.y = math.random(10,500)
+end
+
+return RandomPosition

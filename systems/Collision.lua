@@ -4,14 +4,14 @@ local mathUtil = require("libs.math")
 
 -- Define this System's requirements.
 function CollisionSystem:requires()
-    return {"position", "velocity", "collision"}
+    return {"Position", "Velocity", "Collision"}
 end
 
 function CollisionSystem:update(dt)
     for i, entity in pairs(self.targets) do
 
-        local position = entity:get("position")
-        local col      = entity:get("collision")
+        local position = entity:get("Position")
+        local col      = entity:get("Collision")
 
         -- TODO Build a move efficient collision detection.
         -- Collision Detection

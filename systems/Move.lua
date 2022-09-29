@@ -5,21 +5,19 @@ local keyDown = false
 
 -- Define this System's requirements.
 function MoveSystem:requires()
-    return {"position", "velocity"}
+    return {"Position", "Velocity"}
 end
 
 function MoveSystem:update(dt)
     for i, entity in pairs(self.targets) do
 
-        --if(entity:has("player")) then break end
-
-        local position = entity:get("position")
-        local velocity = entity:get("velocity")
+        local position = entity:get("Position")
+        local velocity = entity:get("Velocity")
 
         -- TODO Player Movement should be extracted out into player system at some point.
         -- Player Movement
         -- 
-        if(entity:has("player")) then
+        if(entity:has("Player")) then
 
             if(love.keyboard.isDown('a')) then
                 velocity.x = velocity.x - velocity.ax

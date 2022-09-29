@@ -84,8 +84,8 @@ function math.collides(a,b)
   assert(a ~= nil, "First collision argument is nil.")
   assert(b ~= nil, "Second collision argument is nil.")
 
-  local entity_a = a:get("position")
-  local entity_b = b:get("position")
+  local entity_a = a:get("Position")
+  local entity_b = b:get("Position")
 
 
   return entity_a.x < entity_b.x+entity_b.w and

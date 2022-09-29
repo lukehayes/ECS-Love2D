@@ -5,8 +5,6 @@ local lovetoys = require('libs.lovetoys')
 lovetoys.initialize({globals = true, debug = true})
 
 -- Components
-local Position = require('components.Position')
-local Velocity = require('components.Velocity')
 
 -- Systems
 local MoveSystem   = require('systems.Move')
@@ -31,8 +29,8 @@ function love.load()
     engine:addEntity(player)
 
     -- Generate some test entities.
-    entity_factory.generate(100)
-    entity_factory.generateVelTest(2)
+    entity_factory.generate(10)
+    --entity_factory.generateVelTest(2)
 
     -- Let's add the MoveSystem to the Engine. Its update() 
     -- method will be invoked within any Engine:update() call.
