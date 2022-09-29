@@ -4,7 +4,7 @@ local TimerSystem = class("TimerSystem", System)
 
 -- Define this System requirements.
 function TimerSystem:requires()
-    return {"timer"}
+    return {"Timer"}
 end
 
 function TimerSystem:update(dt)
