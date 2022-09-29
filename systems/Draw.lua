@@ -24,7 +24,7 @@ function DrawSystem:draw()
         if entity:has("Sprite") then
             local sprite = entity:get("Sprite")
             love.graphics.setColor(color())
-            love.graphics.draw(sprite.image, position.x, position.y, 0, 10,10)
+            love.graphics.draw(sprite.image, position.x, position.y, 0, sprite.scale,sprite.scale)
         else
             love.graphics.setColor(
                 entity:get("Color").r,
