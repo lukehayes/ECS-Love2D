@@ -20,6 +20,6 @@ player:add(Velocity(0,0, solid, 10,10, 5, 100,100))
 player:add(Color())
 player:add(Collision())
 player:add(Player())
-player:add(Sprite("FUCK"))
+player:add(Sprite("assets/face.png"))
 
 return player
