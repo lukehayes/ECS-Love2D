@@ -6,7 +6,7 @@ local json = require "libs.json"
 local FileReader = require "fw.io.FileReader"
 local JsonReader = class("JsonReader")
 
-function JsonReader:intialize(path)
+function JsonReader:initialize(path)
     local contents = FileReader:new(path)
     print(contents)
     self.json = json.decode(contents:contents())
