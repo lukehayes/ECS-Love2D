@@ -1,4 +1,4 @@
---- Class that reads in file contents
+--- Class that reads in the contents of a file regardless of type.
 -- @module fw.io
 --
 local class= require "libs.middleclass"
