@@ -28,8 +28,36 @@ function love.load()
     engine = Engine()
     engine:addEntity(player)
 
+    local tt = {
+
+        a = 1,
+        b = 2,
+        c = {
+            d = 4,
+            e = 5,
+            f = {
+                g = 6,
+                h = 7
+            }
+        }
+    }
+
+
+
+    local JsonReader = require "fw.io.JsonReader"
+    local dump = require "fw.util.dump"
+    local reader = JsonReader:new("assets/player-anim.json")
+    local json = reader.json
+
+    print(dump(tt, 0))
+
+    --print(#json)
+
+    --print(reader.json)
+
+
     -- Generate some test entities.
-    entity_factory.generate(10)
+    --entity_factory.generate(10)
     --entity_factory.generateVelTest(2)
 
     -- Let's add the MoveSystem to the Engine. Its update() 
@@ -38,7 +66,7 @@ function love.load()
     
     -- This will be a 'draw' System, so the
     -- Engine will call its draw method.
-    engine:addSystem(DrawSystem(), "draw")
+    --engine:addSystem(DrawSystem(), "draw")
 
     engine:addSystem(CollisionSystem())
 
