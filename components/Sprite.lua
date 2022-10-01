@@ -4,8 +4,16 @@ local Sprite = lovetoys.class("Sprite")
 function Sprite:initialize(path)
     self.path = path
     self.image = love.graphics.newImage(self.path)
-    self.scale = 2
     self.image:setFilter("nearest", "nearest")
+
+    -- TODO Move this table into a mixin.
+    self.config = {
+        rotation = 0,
+        scale_x = 5,
+        scale_y = 5,
+        offset_x = 8,
+        offset_y = 0
+    }
 end
 
 return Sprite

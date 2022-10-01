@@ -23,8 +23,19 @@ function DrawSystem:draw()
 
         if entity:has("Sprite") then
             local sprite = entity:get("Sprite")
+            local config = sprite.config
+
             love.graphics.setColor(color())
-            love.graphics.draw(sprite.image, position.x, position.y, 0, sprite.scale,sprite.scale)
+            love.graphics.draw(
+                sprite.image,
+                position.x,
+                position.y,
+                config.rotation,
+                config.scale_x,
+                config.scale_y,
+                config.offset_x,
+                config.offset_y
+            )
         else
             love.graphics.setColor(
                 entity:get("Color").r,
