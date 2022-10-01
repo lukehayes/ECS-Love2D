@@ -11,7 +11,7 @@ function Sprite:initialize(path)
         rotation = 0,
         scale_x = 5,
         scale_y = 5,
-        offset_x = 8,
+        offset_x = 0,
         offset_y = 0
     }
 end
