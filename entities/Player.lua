@@ -4,6 +4,7 @@ local Velocity  = require('components.Velocity')
 local Color     = require('components.Color')
 local Collision = require('components.Collision')
 local Sprite    = require('components.Sprite')
+local AnimatedSprite    = require('components.AnimatedSprite')
 
 -- Create and initialize a new Entity.
 -- Note we can access Entity() in the global
@@ -18,6 +19,7 @@ player:add(Velocity(0,0, solid, 10,10, 5, 100,100))
 player:add(Color(1,1,1))
 player:add(Collision())
 player:add(Player())
-player:add(Sprite("assets/player.png"))
+player:add(AnimatedSprite("assets/Bob.png"))
 
 return player
+
