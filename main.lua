@@ -76,6 +76,10 @@ function love.load()
 end
 
 function love.update(dt)
+
+    -- Hacky but it works
+    _G.dt = dt
+
     -- Will run each system with type == 'update'
     engine:update(dt)
 end
