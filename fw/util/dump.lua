@@ -25,6 +25,12 @@ local function indent(level)
 end
 
 
+--- Dump the contents of a table to the console - order is not guaranteed.
+--
+-- @param table
+-- @param level
+-- 
+-- @return void
 function dump(table, level)
     assert(type(table) == "table", "table argument should be a table.")
 
@@ -40,6 +46,20 @@ function dump(table, level)
 
     level = level + 1
 end
+
+function d(table)
+    local length = #table
+
+    print(#table)
+    print(table)
+
+    for i = 1, #table do
+        print(i)
+    end
+
+    print("Done")
+end
+
 
 --- Pretty Print
 --
@@ -125,4 +145,4 @@ function pp(table)
     print(output_str)
 end
 
-return dump
+return d

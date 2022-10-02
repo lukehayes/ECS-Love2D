@@ -23,4 +23,29 @@ function JsonReader:getFrameTags()
     return self.json.meta.frameTags
 end
 
+--- Extract all of the useful info from Aseprite's json file.
+--
+function JsonReader:getInfo()
+    local config = {}
+
+    config.frameTags = self.json.meta.frameTags
+    config.image = self.json.meta.image
+    config.tags = {}
+
+    -- Order isn't guaranteed so I extract all of the fields that
+    -- I need explicitly here to use in animation system.
+    for i = 1,#config.frameTags do
+        local tag = {}
+        local row = config.frameTags[i]
+        tag.name = row.name
+        tag.to = row.to
+        tag.from = row.from
+
+        table.insert(config.tags, tag)
+
+    end
+
+    return config
+end
+
 return JsonReader
