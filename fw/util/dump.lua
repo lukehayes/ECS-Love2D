@@ -39,6 +39,7 @@ function dump(table, level)
     end
 
     level = level + 1
+end
 
 --- Pretty Print
 --
