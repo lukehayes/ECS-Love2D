@@ -25,7 +25,7 @@ end
 
 --- Extract all of the useful info from Aseprite's json file.
 --
-function JsonReader:getInfo()
+function JsonReader:getConfig()
     local config = {}
 
     config.frameTags = self.json.meta.frameTags
