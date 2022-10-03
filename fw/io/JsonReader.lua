@@ -19,7 +19,7 @@ end
 
 --- Get the "frameTags" ARRAY from the JSON Aseprite file.
 --
-function JsonReader:getFrameTags()
+function JsonReader:getFrameTagsRaw()
     return self.json.meta.frameTags
 end
 
