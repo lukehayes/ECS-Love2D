@@ -30,6 +30,10 @@ function JsonReader:getInfo()
 
     config.frameTags = self.json.meta.frameTags
     config.image = self.json.meta.image
+
+    -- Size should workout to be the size of an individual tile.
+    config.size = self.json.meta.size.h
+
     config.tags = {}
 
     -- Order isn't guaranteed so I extract all of the fields that
