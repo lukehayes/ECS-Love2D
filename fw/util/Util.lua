@@ -3,6 +3,16 @@
 
 local utils = {}
 
+--- Is the argument a table or not?
+--
+-- @param t The value to check.
+--
+-- @return Bool
+function isTable(t)
+    return type(t) == "table"
+end
+
+
 --- Get the number of elements inside a table
 --
 -- @param table The table
