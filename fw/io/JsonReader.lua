@@ -23,6 +23,24 @@ function JsonReader:getFrameTagsRaw()
     return self.json.meta.frameTags
 end
 
+--- Get the specific values that are usefil from the frame tags
+--  entry in the JSON file supplied to the constructor.
+--
+function JsonReader:getFrameTags()
+    local frameTags = {}
+    local tags = self.json.meta.frameTags
+
+    for k,v in pairs(tags) do
+        frameTags[v.name] = {
+            name = v.name,
+            from = v.from,
+            to = v.to
+        }
+    end
+
+    return frameTags
+end
+
 --- Get the "frames" table from the JSON Aseprite file.
 --
 function JsonReader:getFrames()
