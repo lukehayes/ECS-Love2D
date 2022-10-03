@@ -23,6 +23,12 @@ function JsonReader:getFrameTags()
     return self.json.meta.frameTags
 end
 
+--- Get the "frames" table from the JSON Aseprite file.
+--
+function JsonReader:getFrames()
+    return self.json.frames
+end
+
 --- Extract all of the useful info from Aseprite's json file.
 --
 function JsonReader:getConfig()
