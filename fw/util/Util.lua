@@ -13,13 +13,13 @@ function isTable(t)
 end
 
 
---- Get the number of elements inside a table
+--- Get the number of elements inside a table.
 --
 -- @param table The table
 --
 -- @return number The number of entries in the table.
-function utils.tableLength(table)
-    assert(type(table) == "table", "table argument must be a table")
+function utils.tableSize(table)
+    assert(type(table) == "table", "Argument passed in must be a table.")
 
     local count = 0
 
