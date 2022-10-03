@@ -20,5 +20,27 @@ function utils.tableLength(table)
     return count
 end
 
+--- Get the number of elements inside a table recursively.
+--
+-- @param table The table
+--
+-- @return number The number of entries in the table.
+function utils.tableLengthRec(table)
+    assert(type(table) == "table", "table argument must be a table")
+
+    local count = 0
+
+    for _,v in pairs(table) do
+
+        count = count + 1
+
+        if(type(v) == "table") then
+            count = count + utils.tableLengthRec(v)
+        end
+    end
+
+    return count
+end
+
 return utils
 
