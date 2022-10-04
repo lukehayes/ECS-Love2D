@@ -1,6 +1,5 @@
 --- Class that reads in the contents of a file regardless of type.
--- @module fw.io
---
+-- @classmod fw.io.FileReader
 local class= require "libs.middleclass"
 local FileReader = class("FileReader")
 
