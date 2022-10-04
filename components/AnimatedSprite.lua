@@ -1,15 +1,14 @@
 local lovetoys = require('libs.lovetoys')
 local Sprite = require "components.Sprite"
 local AnimatedSprite = lovetoys.class("AnimatedSprite", Sprite)
-local JsonReader = require "fw.io.JsonReader"
-local JSON = JsonReader:new("assets/Bob.json")
+local AnimationLoader = require "fw.loader.AnimationLoader"
 local Util = require "fw.util.Util"
-local d = require "libs.dump"
 
 function AnimatedSprite:initialize(path)
     self.path = path
     self.image = love.graphics.newImage(self.path)
     self.image:setFilter("nearest", "nearest")
+    self.loader = AnimationLoader:new("assets/Bob.json")
 
      --TODO Move this table into a mixin.
     self.config = {
@@ -20,7 +19,7 @@ function AnimatedSprite:initialize(path)
         offset_y = 0
     }
 
-    self.frameTags = JSON:getFrameTags()
+    self.frameTags = self.loader:getFrameTags()
 
     self.anim = {
         size = 16,
@@ -36,24 +35,22 @@ end
 --
 function AnimatedSprite:generateQuads()
 
-    local quads = {}
+    --local quads = {}
 
-    for k,v in pairs(self.frameTags) do
+    --for k,v in pairs(self.frameTags) do
 
-        local t = quads[v.name] = {}
+        --for i = v.from, v.to do
+            --table.insert(
+                --t,
+                --love.graphics.newQuad(i * 16,0,16,16, self.image)
+            --)
 
-        for i = v.from, v.to do
-            table.insert(
-                t,
-                love.graphics.newQuad(i * 16,0,16,16, self.image)
-            )
-
-            table.insert(quads[v.name], t)
-        end
-    end
+            --table.insert(quads[v.name], t)
+        --end
+    --end
 
 
-    return quads
+    --return quads
 end
 
 return AnimatedSprite
