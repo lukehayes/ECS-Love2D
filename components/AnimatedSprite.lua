@@ -35,22 +35,16 @@ end
 --
 function AnimatedSprite:generateQuads()
 
-    --local quads = {}
+    local quads = {}
+    
+    for i = 0,7 do
+        table.insert(
+        quads,
+        love.graphics.newQuad(i * 16,0,16,16, self.image)
+        )
+    end
 
-    --for k,v in pairs(self.frameTags) do
-
-        --for i = v.from, v.to do
-            --table.insert(
-                --t,
-                --love.graphics.newQuad(i * 16,0,16,16, self.image)
-            --)
-
-            --table.insert(quads[v.name], t)
-        --end
-    --end
-
-
-    --return quads
+    return quads
 end
 
 return AnimatedSprite
