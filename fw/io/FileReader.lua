@@ -1,9 +1,13 @@
+-------------------------------------------------------------------------------
 --- Class that reads in the contents of a file regardless of type.
--- @classmod fw.io.FileReader
+--
+--  @classmod fw.io.FileReader
+--
 local class= require "libs.middleclass"
 local FileReader = class("FileReader")
 
---- Constructor
+-------------------------------------------------------------------------------
+--- Create a new instance of FileReader.
 --
 -- @raise Assertion thrown if path is not a string.
 --
@@ -15,6 +19,7 @@ function FileReader:initialize(path)
 end
 
 
+-------------------------------------------------------------------------------
 --- Read entire contents of a file into a string.
 --
 -- @raise Assertion thrown if self.path is not a string.
