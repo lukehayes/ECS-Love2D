@@ -1,5 +1,7 @@
 --- Class that reads in the contents of a JSON file.
 --
+--  Dependencies: 'fw.io.FileReader'
+--
 --  @classmod fw.io.JsonReader
 --
 local class = require "libs.middleclass"
