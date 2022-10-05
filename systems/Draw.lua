@@ -26,6 +26,7 @@ function DrawSystem:draw(dt)
         if entity:has("AnimatedSprite") then
             local sprite = entity:get("AnimatedSprite")
             local config = sprite.config
+            local anim = sprite.anim
             local duration = sprite.anim.duration
             local frameTags = sprite.frameTags
             local frameStart = frameTags["Walk"].from
@@ -33,14 +34,13 @@ function DrawSystem:draw(dt)
 
             local quads = sprite:generateQuads()
 
-            print("Iter ", iter)
-            print("Frame ", frame)
+            sprite:play("Walk")
 
             love.graphics.setColor(color())
 
             love.graphics.draw(
                 sprite.image,
-                quads[frame],
+                quads[anim.current_frame],
                 position.x,
                 position.y,
                 config.rotation,
@@ -49,18 +49,6 @@ function DrawSystem:draw(dt)
                 config.offset_x,
                 config.offset_y
             )
-            
-
-             iter = iter + _G.dt
-
-             if iter > sprite.anim.speed then
-                 frame = frame + 1
-                 iter = 0
-             end
-
-             if frame > frameEnd then
-                 frame = frameStart
-             end
 
         else
             love.graphics.setColor(
