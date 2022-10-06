@@ -7,15 +7,15 @@ lovetoys.initialize({globals = true, debug = true})
 -- Components
 
 -- Systems
-local MoveSystem   = require('systems.Move')
-local DrawSystem   = require('systems.Draw')
-local TimerSystem  = require('systems.Timer')
-local PlayerSystem = require('systems.Player')
-local CollisionSystem = require('systems.Collision')
+local MoveSystem   = require('fw.systems.Move')
+local DrawSystem   = require('fw.systems.Draw')
+local TimerSystem  = require('fw.systems.Timer')
+local PlayerSystem = require('fw.systems.Player')
+local CollisionSystem = require('fw.systems.Collision')
 
 -- Entities
-local player = require('entities.Player')
-local entity_factory = require('factories.EntityFactory')
+local player = require('fw.entities.Player')
+local entity_factory = require('fw.factories.EntityFactory')
 
 -- Initialize:
 -- debug = true will enable library console logs
@@ -49,7 +49,23 @@ function love.load()
     local reader = JsonReader:new("assets/player-anim.json")
     local json = reader.json
 
-    print(dump(tt, 0))
+    local AnimationLoader = require "fw.loader.AnimationLoader"
+    local Loader = AnimationLoader:new("assets/Bob.json")
+
+    local tags = Loader:getFrameTags()
+
+    for i = tags["Walk"].from, tags["Walk"].to do
+        print(i)
+    end
+
+    for k,v in pairs(tags["Walk"]) do
+        print(k,v)
+    end
+
+
+    for k,v in pairs(Loader:getFrames()) do
+        print(k,v.frame.x)
+    end
 
     --print(#json)
 
@@ -66,7 +82,7 @@ function love.load()
     
     -- This will be a 'draw' System, so the
     -- Engine will call its draw method.
-    --engine:addSystem(DrawSystem(), "draw")
+    engine:addSystem(DrawSystem(), "draw")
 
     engine:addSystem(CollisionSystem())
 
