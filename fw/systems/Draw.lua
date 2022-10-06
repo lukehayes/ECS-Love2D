@@ -32,15 +32,14 @@ function DrawSystem:draw(dt)
             local frameStart = frameTags["Walk"].from
             local frameEnd = frameTags["Walk"].to
 
-            local quads = sprite:generateQuads()
-
-            sprite:play("Walk")
+            sprite:play("Disco")
+            print("Current Frame ", anim.current_frame)
 
             love.graphics.setColor(color())
 
             love.graphics.draw(
                 sprite.image,
-                quads[anim.current_frame],
+                sprite.anim.frames[anim.current_frame],
                 position.x,
                 position.y,
                 config.rotation,
@@ -59,7 +58,6 @@ function DrawSystem:draw(dt)
 
             love.graphics.rectangle("fill", position.x, position.y, position.w, position.h)
         end
-
     end
 end
 

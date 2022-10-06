@@ -4,7 +4,7 @@
 --  @classmod components.AnimatedSprite
 --
 local lovetoys = require('libs.lovetoys')
-local Sprite = require "components.Sprite"
+local Sprite = require "fw.components.Sprite"
 local AnimatedSprite = lovetoys.class("AnimatedSprite", Sprite)
 local AnimationLoader = require "fw.loader.AnimationLoader"
 local Util = require "fw.util.Util"
@@ -19,7 +19,7 @@ function AnimatedSprite:initialize(path)
     self.path = path
     self.image = love.graphics.newImage(self.path)
     self.image:setFilter("nearest", "nearest")
-    self.loader = AnimationLoader:new("assets/Bob.json")
+    self.loader = AnimationLoader:new("assets/Bob-Disco.json")
 
      --TODO Move this table into a mixin.
     self.config = {
@@ -36,7 +36,7 @@ function AnimatedSprite:initialize(path)
         size = 16,
         count = 4,
         speed = 0.1,
-        current_frame = 1,
+        current_frame = 8,
         iter = 0,
         frames = self:generateQuads()
     }
@@ -56,9 +56,11 @@ function AnimatedSprite:play(animation)
     local frames = tags[animation]
 
      anim.iter = anim.iter + _G.dt
-     
-     print("Iter", anim.iter)
-     print("Frame", anim.current_frame)
+
+     print("------")
+     print(frames.from)
+     print(frames.to)
+     print("------")
 
      if anim.iter > anim.speed then
          anim.current_frame = anim.current_frame + 1
@@ -77,7 +79,7 @@ function AnimatedSprite:generateQuads()
 
     local quads = {}
     
-    for i = 0,7 do
+    for i = 0, 12 do
         table.insert(
         quads,
         love.graphics.newQuad(i * 16,0,16,16, self.image)

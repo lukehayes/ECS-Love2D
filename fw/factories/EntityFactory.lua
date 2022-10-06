@@ -1,9 +1,9 @@
 -- Components
-local Position = require('components.Position')
-local Velocity = require('components.Velocity')
-local Color    = require('components.Color')
-local Collision = require('components.Collision')
-local Timer    = require('components.Timer')
+local Position  = require('fw.components.Position')
+local Velocity  = require('fw.components.Velocity')
+local Color     = require('fw.components.Color')
+local Collision = require('fw.components.Collision')
+local Timer     = require('fw.components.Timer')
 
 -- Entity Factory Table
 local entity_factory = {}
