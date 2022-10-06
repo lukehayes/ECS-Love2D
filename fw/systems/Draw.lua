@@ -34,6 +34,7 @@ function DrawSystem:draw(dt)
 
             sprite:play("Disco")
             print("Current Frame ", anim.current_frame)
+            print("Current Animation ", anim.current_name)
 
             love.graphics.setColor(color())
 

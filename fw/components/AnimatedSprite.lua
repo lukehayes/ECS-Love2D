@@ -33,10 +33,11 @@ function AnimatedSprite:initialize(path)
     self.frameTags = self.loader:getFrameTags()
 
     self.anim = {
-        size = 16,
+        tile_size = 16,
         count = 4,
         speed = 0.1,
         current_frame = 8,
+        current_name = "Idle",
         iter = 0,
         frames = self:generateQuads()
     }
@@ -54,13 +55,9 @@ function AnimatedSprite:play(animation)
     local anim = self.anim
     local tags = self.loader:getFrameTags()
     local frames = tags[animation]
+    anim.current_name = animation
 
      anim.iter = anim.iter + _G.dt
-
-     print("------")
-     print(frames.from)
-     print(frames.to)
-     print("------")
 
      if anim.iter > anim.speed then
          anim.current_frame = anim.current_frame + 1
