@@ -26,21 +26,14 @@ function DrawSystem:draw(dt)
         if entity:has("AnimatedSprite") then
             local sprite = entity:get("AnimatedSprite")
             local config = sprite.config
-            local anim = sprite.anim
-            local duration = sprite.anim.duration
-            local frameTags = sprite.frameTags
-            local frameStart = frameTags["Walk"].from
-            local frameEnd = frameTags["Walk"].to
 
-            sprite:play("Disco")
-            print("Current Frame ", anim.current_frame)
-            print("Current Animation ", anim.current_name)
+            sprite:play("Walk")
 
             love.graphics.setColor(color())
 
             love.graphics.draw(
                 sprite.image,
-                sprite.anim.frames[anim.current_frame],
+                sprite.anim.frames[sprite.anim.current_frame],
                 position.x,
                 position.y,
                 config.rotation,
