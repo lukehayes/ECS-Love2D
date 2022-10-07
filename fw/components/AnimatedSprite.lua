@@ -79,7 +79,7 @@ function AnimatedSprite:generateQuads()
     for i = 0, 12 do
         table.insert(
         quads,
-        love.graphics.newQuad(i * self.anim.tile_size,0,16,16, self.image)
+        love.graphics.newQuad(i * 16,0,16,16, self.image)
         )
     end
 
