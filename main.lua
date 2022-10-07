@@ -28,53 +28,9 @@ function love.load()
     engine = Engine()
     engine:addEntity(player)
 
-    local tt = {
-
-        a = 1,
-        b = 2,
-        c = {
-            d = 4,
-            e = 5,
-            f = {
-                g = 6,
-                h = 7
-            }
-        }
-    }
-
-
-
-    local JsonReader = require "fw.io.JsonReader"
-    local dump = require "fw.util.dump"
-    local reader = JsonReader:new("assets/player-anim.json")
-    local json = reader.json
-
-    local AnimationLoader = require "fw.loader.AnimationLoader"
-    local Loader = AnimationLoader:new("assets/Bob.json")
-
-    local tags = Loader:getFrameTags()
-
-    for i = tags["Walk"].from, tags["Walk"].to do
-        print(i)
-    end
-
-    for k,v in pairs(tags["Walk"]) do
-        print(k,v)
-    end
-
-
-    for k,v in pairs(Loader:getFrames()) do
-        print(k,v.frame.x)
-    end
-
-    --print(#json)
-
-    --print(reader.json)
-
-
     -- Generate some test entities.
-    --entity_factory.generate(10)
-    --entity_factory.generateVelTest(2)
+    -- entity_factory.generate(10)
+    -- entity_factory.generateVelTest(2)
 
     -- Let's add the MoveSystem to the Engine. Its update() 
     -- method will be invoked within any Engine:update() call.
