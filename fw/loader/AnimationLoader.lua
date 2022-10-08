@@ -10,11 +10,6 @@ function AnimationLoader:initialize(json_file)
     self.reader = JsonReader:new(json_file)
 end
 
-function AnimationLoader:load(json_file)
-    self.json_file = json_file
-    self.reader = AnimationLoader(json_file)
-end
-
 --- Get the "meta" table from the JSON Aseprite file.
 --
 function AnimationLoader:getMeta()
