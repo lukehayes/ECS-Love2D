@@ -4,8 +4,6 @@ local lovetoys = require('libs.lovetoys')
 -- Make lovetoys libs global for now.
 lovetoys.initialize({globals = true, debug = true})
 
--- Components
-
 -- Systems
 local MoveSystem   = require('fw.systems.Move')
 local DrawSystem   = require('fw.systems.Draw')
@@ -40,9 +38,6 @@ function love.load()
     -- This will be a 'draw' System, so the
     -- Engine will call its draw method.
     engine:addSystem(DrawSystem(), "draw")
-
-    --engine:addSystem(AnimationSystem(), "draw")
-    --engine:addSystem(CollisionSystem())
 end
 
 function love.update(dt)
