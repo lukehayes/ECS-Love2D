@@ -42,17 +42,12 @@ function love.load()
     engine:addSystem(DrawSystem(), "draw")
 
     --engine:addSystem(AnimationSystem(), "draw")
-
-    engine:addSystem(CollisionSystem())
-
-    --engine:addSystem(PlayerSystem(), "update")
-
-    --engine:addSystem(TimerSystem())
+    --engine:addSystem(CollisionSystem())
 end
 
 function love.update(dt)
 
-    -- Hacky but it works
+    -- Hacky but it works - make delta time global.
     _G.dt = dt
 
     -- Will run each system with type == 'update'

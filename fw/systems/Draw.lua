@@ -3,7 +3,7 @@ local DrawSystem = class("DrawSystem", System)
 
 -- Define this System requirements.
 function DrawSystem:requires()
-    return {"Position"}
+    return {"Position", "Color"}
 end
 
 function DrawSystem:draw(dt)
@@ -11,14 +11,6 @@ function DrawSystem:draw(dt)
 
         local position = entity:get("Position")
         local color    = entity:get("Color")
-
-        if(entity:has("timer")) then
-            local timer = entity:get("timer")
-
-            if(timer.finished) then
-                entity:get("Color").b = 0
-            end
-        end
 
         love.graphics.setColor(
             entity:get("Color").r,
