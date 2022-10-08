@@ -1,8 +1,5 @@
 -- Create a draw System.
 local DrawSystem = class("DrawSystem", System)
-local size = 5
-local iter = 0
-local frame = 1
 
 -- Define this System requirements.
 function DrawSystem:requires()
@@ -23,35 +20,13 @@ function DrawSystem:draw(dt)
             end
         end
 
-        if entity:has("AnimatedSprite") then
-            local sprite = entity:get("AnimatedSprite")
-            local config = sprite.config
+        love.graphics.setColor(
+            entity:get("Color").r,
+            entity:get("Color").g,
+            entity:get("Color").b
+        )
 
-            sprite:play("Walk")
-
-            love.graphics.setColor(color())
-
-            love.graphics.draw(
-                sprite.image,
-                sprite.anim.frames[sprite.anim.current_frame],
-                position.x,
-                position.y,
-                config.rotation,
-                config.scale_x,
-                config.scale_y,
-                config.offset_x,
-                config.offset_y
-            )
-
-        else
-            love.graphics.setColor(
-                entity:get("Color").r,
-                entity:get("Color").g,
-                entity:get("Color").b
-            )
-
-            love.graphics.rectangle("fill", position.x, position.y, position.w, position.h)
-        end
+        love.graphics.rectangle("fill", position.x, position.y, position.w, position.h)
     end
 end
 

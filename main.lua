@@ -12,6 +12,7 @@ local DrawSystem   = require('fw.systems.Draw')
 local TimerSystem  = require('fw.systems.Timer')
 local PlayerSystem = require('fw.systems.Player')
 local CollisionSystem = require('fw.systems.Collision')
+local AnimationSystem = require('fw.systems.Animation')
 
 -- Entities
 local player = require('fw.entities.Player')
@@ -29,7 +30,7 @@ function love.load()
     engine:addEntity(player)
 
     -- Generate some test entities.
-    -- entity_factory.generate(10)
+     --entity_factory.generate(10)
     -- entity_factory.generateVelTest(2)
 
     -- Let's add the MoveSystem to the Engine. Its update() 
@@ -39,6 +40,8 @@ function love.load()
     -- This will be a 'draw' System, so the
     -- Engine will call its draw method.
     engine:addSystem(DrawSystem(), "draw")
+
+    --engine:addSystem(AnimationSystem(), "draw")
 
     engine:addSystem(CollisionSystem())
 
