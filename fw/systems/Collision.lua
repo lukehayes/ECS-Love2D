@@ -28,7 +28,6 @@ function CollisionSystem:update(dt)
             if not col.hit and mathUtil.collides(entity, other)then
                 position.w = math.random(2,150)
                 position.h = math.random(2,150)
-                print("Collision")
                 col.hit = true
             end
 
