@@ -13,6 +13,7 @@ local PlatformGenerator = class("PlatformGenerator")
 --  @param tile_size The size of an individual tile.
 --  @param w The width of the grid.
 --  @param h The height of the grid.
+--  @param h The height of the grid.
 --
 function PlatformGenerator:initialize(tile_size, w,h)
     self.tile_size = tile_size or 16
@@ -24,27 +25,54 @@ end
 -------------------------------------------------------------------------------
 --- Generate a simple tile grid consisting of solid and empty tiles.
 --
---  @param tile_size The size of an individual tile.
---  @param w The width of the grid.
---  @param h The height of the grid.
+--  @param weight The chance of generating a solid block. Default is 0.5.
 --
-function PlatformGenerator:generate()
+function PlatformGenerator:generate(weight)
+
+    local weight = weight or 16
+    self.grid = {}
 
     for x = 1, self.w do
+        local row = {}
         for y = 1, self.h do
-            local rn = math.random(0,1)
+            local rn = math.random()
             local cell = {}
 
-            if(rn > 0) then
+            if(rn > weight) then
                 cell.solid = true
             else
                 cell.solid = false
             end
 
-            table.insert(self.grid, cell)
+            table.insert(row, cell)
        end
+
+       table.insert(self.grid, row)
     end
 
 end
+
+
+-------------------------------------------------------------------------------
+--- Draw the generated grid.
+--
+--  @param x X axis position of the grid.
+--  @param y Y axis position of the grid.
+--
+function PlatformGenerator:draw(x,y)
+    local SPACE = self.tile_size + 1
+
+    for xx = 1, self.w do
+        for yy = 1, self.h do
+            local cell = self.grid[xx][yy]
+
+            if cell.solid then
+                love.graphics.rectangle("fill", x + xx * SPACE, y + yy * SPACE, self.tile_size, self.tile_size)
+            end
+        end
+    end
+
+end
+
 
 return PlatformGenerator
