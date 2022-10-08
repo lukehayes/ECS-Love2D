@@ -19,7 +19,7 @@ player:add(Velocity(0,0, solid, 10,10, 5, 100,100))
 player:add(Color(1,1,1))
 player:add(Collision())
 player:add(Player())
-player:add(AnimatedSprite("assets/Bob-Disco.png"))
+player:add(AnimatedSprite("assets/Bob-Disco.png","assets/Bob-Disco.json"))
 
 return player
 

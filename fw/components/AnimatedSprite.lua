@@ -15,11 +15,10 @@ local Util = require "fw.util.Util"
 --
 -- @param path The full path to the JSON file.
 --
-function AnimatedSprite:initialize(path)
-    self.path = path
-    self.image = love.graphics.newImage(self.path)
+function AnimatedSprite:initialize(image_path, json_path)
+    self.image = love.graphics.newImage(image_path)
     self.image:setFilter("nearest", "nearest")
-    self.loader = AnimationLoader:new("assets/Bob-Disco.json")
+    self.loader = AnimationLoader:new(json_path)
 
      --TODO Move this table into a mixin.
     self.config = {
