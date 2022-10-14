@@ -52,6 +52,27 @@ function PlatformGenerator:generate(weight)
 
 end
 
+-------------------------------------------------------------------------------
+--- Generate a grid of grids.
+--
+--  @param w The number of complete grids on the x axis.
+--  @param h The number of complete grids on the y axis.
+--
+
+function PlatformGenerator:generateGrid(w,h)
+    local grids = {}
+
+    for x = 1, w do
+        local row = {}
+        for y = 1, h do
+            local grid = self:generateGrid(0.5)
+            table.insert(grid, row)
+        end
+
+        table.insert()
+    end
+
+end
 
 -------------------------------------------------------------------------------
 --- Draw the generated grid.
