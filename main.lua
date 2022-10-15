@@ -19,15 +19,8 @@ local entity_factory = require('fw.factories.EntityFactory')
 -- Procgen
 --
 local PlatformGenerator = require('fw.procgen.PlatformGenerator')
-local pg = PlatformGenerator:new()
-pg:generateBlock(0.5)
-
-local a = PlatformGenerator:new()
-a:generateBlock(0.3)
-local b = PlatformGenerator:new()
-b:generateBlock(0.5)
-local c = PlatformGenerator:new()
-c:generateBlock(0.9)
+local pg = PlatformGenerator:new(16,10,10,10,10)
+pg:generateGrid()
 
 -- Initialize:
 -- debug = true will enable library console logs
@@ -60,21 +53,27 @@ function love.update(dt)
 
     -- Will run each system with type == 'update'
     engine:update(dt)
-
-    if(love.keyboard.isDown('r')) then
-        a:generateBlock(math.random())
-        b:generateBlock(math.random())
-        c:generateBlock(math.random())
-    end
 end
 
 function love.draw()
     -- Will invoke the draw() method on each system with type == 'draw'
     engine:draw()
 
-    a:draw(0,0)
-    b:draw(a.w * (a.tile_size * 1),0)
-    c:draw(b.w * (b.tile_size * 2),0)
+    --pg:draw(10,10)
+
+    local g = pg:generateBlock(0.5)
+
+
+    for x = 1, 2 do
+        for y = 1, 2 do
+            local cell = g[x][y]
+
+            if cell.solid then
+                love.graphics.rectangle("fill", x * SPACE, y * SPACE, pg.tile_size, pg.tile_size)
+            end
+        end
+    end
+
 end
 
 

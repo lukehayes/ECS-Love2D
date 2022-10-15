@@ -11,14 +11,17 @@ local PlatformGenerator = class("PlatformGenerator")
 --- Constructor - calling :new() runs this method.
 --
 --  @param tile_size The size of an individual tile.
---  @param w The width of the grid.
---  @param h The height of the grid.
---  @param h The height of the grid.
+--  @param block_width  The width of a single grid block.
+--  @param block_height The height of a single grid block.
+--  @param grid_width   The width of the entire grid of grids.
+--  @param grid_height  The width of the entire grid of grids.
 --
-function PlatformGenerator:initialize(tile_size, w,h)
-    self.tile_size = tile_size or 16
-    self.w = w or 10
-    self.h = h or 10
+function PlatformGenerator:initialize(tile_size, block_width, block_height, grid_width, grid_height)
+    self.tile_size   = tile_size or 16
+    self.block_width  = block_width or 10
+    self.block_height = block_height or 10
+    self.grid_width  = grid_width or 10
+    self.grid_height = grid_height or 10
     self.grid = {}
 end
 
@@ -27,14 +30,15 @@ end
 --
 --  @param weight The chance of generating a solid block. Default is 0.5.
 --
+--  @return self.block
 function PlatformGenerator:generateBlock(weight)
 
     local weight = weight or 16
-    self.grid = {}
+    local block = {}
 
-    for x = 1, self.w do
+    for x = 1, self.block_width do
         local row = {}
-        for y = 1, self.h do
+        for y = 1, self.block_height do
             local rn = math.random()
             local cell = {}
 
@@ -47,8 +51,10 @@ function PlatformGenerator:generateBlock(weight)
             table.insert(row, cell)
        end
 
-       table.insert(self.grid, row)
+       table.insert(row, block)
     end
+
+    return block
 
 end
 
@@ -58,21 +64,19 @@ end
 --  @param w The number of complete grids on the x axis.
 --  @param h The number of complete grids on the y axis.
 --
-function PlatformGenerator:generateGrid(w,h)
-    local grids = {}
+function PlatformGenerator:generateGrid()
 
-    for x = 1, w do
+    for x = 1, self.grid_width do
 
         local row = {}
 
-        for y = 1, h do
-            local grid = self:generateGrid(0.5)
-            table.insert(grid, row)
+        for y = 1, self.grid_height do
+            local block = self:generateBlock(0.5)
+            table.insert(row, block)
         end
 
-        table.insert(grids, row)
+        table.insert(self.grid, row)
     end
-
 end
 
 -------------------------------------------------------------------------------
@@ -84,9 +88,11 @@ end
 function PlatformGenerator:draw(x,y)
     local SPACE = self.tile_size + 1
 
-    for xx = 1, self.w do
-        for yy = 1, self.h do
+    for xx = 1, self.grid_width - 1 do
+        for yy = 1, self.grid_height - 1 do
+
             local cell = self.grid[xx][yy]
+
 
             if cell.solid then
                 love.graphics.rectangle("fill", x + xx * SPACE, y + yy * SPACE, self.tile_size, self.tile_size)
