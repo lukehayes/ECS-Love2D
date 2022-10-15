@@ -27,7 +27,7 @@ end
 --
 --  @param weight The chance of generating a solid block. Default is 0.5.
 --
-function PlatformGenerator:generate(weight)
+function PlatformGenerator:generateBlock(weight)
 
     local weight = weight or 16
     self.grid = {}
@@ -58,18 +58,19 @@ end
 --  @param w The number of complete grids on the x axis.
 --  @param h The number of complete grids on the y axis.
 --
-
 function PlatformGenerator:generateGrid(w,h)
     local grids = {}
 
     for x = 1, w do
+
         local row = {}
+
         for y = 1, h do
             local grid = self:generateGrid(0.5)
             table.insert(grid, row)
         end
 
-        table.insert()
+        table.insert(grids, row)
     end
 
 end

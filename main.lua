@@ -20,14 +20,14 @@ local entity_factory = require('fw.factories.EntityFactory')
 --
 local PlatformGenerator = require('fw.procgen.PlatformGenerator')
 local pg = PlatformGenerator:new()
-pg:generate(0.5)
+pg:generateBlock(0.5)
 
 local a = PlatformGenerator:new()
-a:generate(0.5)
+a:generateBlock(0.3)
 local b = PlatformGenerator:new()
-b:generate(0.8)
+b:generateBlock(0.5)
 local c = PlatformGenerator:new()
-c:generate(0.2)
+c:generateBlock(0.9)
 
 -- Initialize:
 -- debug = true will enable library console logs
@@ -60,6 +60,12 @@ function love.update(dt)
 
     -- Will run each system with type == 'update'
     engine:update(dt)
+
+    if(love.keyboard.isDown('r')) then
+        a:generateBlock(math.random())
+        b:generateBlock(math.random())
+        c:generateBlock(math.random())
+    end
 end
 
 function love.draw()
@@ -67,8 +73,8 @@ function love.draw()
     engine:draw()
 
     a:draw(0,0)
-    b:draw(a.w * 10,100)
-    c:draw(b.w * 20,200)
+    b:draw(a.w * (a.tile_size * 1),0)
+    c:draw(b.w * (b.tile_size * 2),0)
 end
 
 
