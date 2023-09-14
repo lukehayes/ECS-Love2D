@@ -1,77 +1,57 @@
--- Include the library.
-local lovetoys = require('libs.lovetoys')
 
--- Make lovetoys libs global for now.
-lovetoys.initialize({globals = true, debug = true})
+function PositionComp(id,x,y)
+    return {id=id, x=x, y=y}
+end
 
--- Systems
-local MoveSystem   = require('fw.systems.Move')
-local DrawSystem   = require('fw.systems.Draw')
-local TimerSystem  = require('fw.systems.Timer')
-local PlayerSystem = require('fw.systems.Player')
-local CollisionSystem = require('fw.systems.Collision')
-local AnimationSystem = require('fw.systems.Animation')
+function ColorComp(id, r,g,b,a)
+    return {id=id, r=r,g=g,b=b,a=a}
+end
 
--- Entities
-local player = require('fw.entities.Player')
-local entity_factory = require('fw.factories.EntityFactory')
+local e1 = {}
+e1.id = 1
+e1.position = PositionComp(e1.id,100,100)
+e1.color = ColorComp(e1.id, 0,1,1,1)
 
--- Procgen
---
-local PlatformGenerator = require('fw.procgen.PlatformGenerator')
-local pg = PlatformGenerator:new(16,10,10,10,10)
-pg:generateGrid()
+local e2 = {}
+e2.id = 2
+e2.position = PositionComp(e2.id,300,300)
+e2.color = ColorComp(e2.id, 1,1,0,1)
 
--- Initialize:
--- debug = true will enable library console logs
--- globals = true will register lovetoys classes in the global namespace
--- so you can access i.e. Entity() in addition to lovetoys.Entity()
+local e3 = {}
+e3.id = 3
+e3.position = PositionComp(e3.id,200,400)
+--e3.color = ColorComp(e3.id, 1,0,0,1)
+
+local entts = {}
+table.insert(entts, e1)
+table.insert(entts, e2)
+table.insert(entts, e3)
 
 function love.load()
-
-    -- Finally, we setup an Engine.
-    engine = Engine()
-    engine:addEntity(player)
-
-    -- Generate some test entities.
-     --entity_factory.generate(10)
-    -- entity_factory.generateVelTest(2)
-
-    -- Let's add the MoveSystem to the Engine. Its update() 
-    -- method will be invoked within any Engine:update() call.
-    engine:addSystem(MoveSystem())
-    
-    -- This will be a 'draw' System, so the
-    -- Engine will call its draw method.
-    engine:addSystem(DrawSystem(), "draw")
 end
 
 function love.update(dt)
-
-    -- Hacky but it works - make delta time global.
-    _G.dt = dt
-
-    -- Will run each system with type == 'update'
-    engine:update(dt)
+    for _,ent in pairs(entts) do
+        ent.position.x = ent.position.x + 100 * dt
+    end
 end
 
 function love.draw()
-    -- Will invoke the draw() method on each system with type == 'draw'
-    engine:draw()
-
-    --pg:draw(10,10)
-
-    local g = pg:generateBlock(0.5)
-
-
-    for x = 1, 2 do
-        for y = 1, 2 do
-            local cell = g[x][y]
-
-            if cell.solid then
-                love.graphics.rectangle("fill", x * SPACE, y * SPACE, pg.tile_size, pg.tile_size)
-            end
+    
+    for _,ent in pairs(entts) do
+        
+        if(ent.color) then
+            love.graphics.setColor(
+                ent.color.r,
+                ent.color.g,
+                ent.color.b,
+                ent.color.a
+            )
+        else
+            love.graphics.setColor(1,0,1,1)
         end
+
+        love.graphics.rectangle("fill", ent.position.x,ent.position.y,10,10)
     end
 
 end
