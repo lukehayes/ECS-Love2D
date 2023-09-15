@@ -1,58 +1,62 @@
 
-function PositionComp(id,x,y)
-    return {id=id, x=x, y=y}
+function PositionComp(x,y)
+    return {x=x, y=y, name="Position"}
 end
 
 function ColorComp(id, r,g,b,a)
-    return {id=id, r=r,g=g,b=b,a=a}
+    return {r=r,g=g,b=b,a=a, name="Color"}
 end
 
-local e1 = {}
-e1.id = 1
-e1.position = PositionComp(e1.id,100,100)
-e1.color = ColorComp(e1.id, 0,1,1,1)
+local components = {
+    position = {},
+    color    = {}
+}
 
-local e2 = {}
-e2.id = 2
-e2.position = PositionComp(e2.id,300,300)
-e2.color = ColorComp(e2.id, 1,1,0,1)
+local tt = {}
 
-local e3 = {}
-e3.id = 3
-e3.position = PositionComp(e3.id,200,400)
---e3.color = ColorComp(e3.id, 1,0,0,1)
 
-local entts = {}
-table.insert(entts, e1)
-table.insert(entts, e2)
-table.insert(entts, e3)
+table.insert(components.position,1, PositionComp(100,100))
+table.insert(components.position,2, PositionComp(200,200))
+table.insert(components.position,3, PositionComp(300,400))
+
+table.insert(components.color, 1, ColorComp(1,0,1,1))
+table.insert(components.color, 2, ColorComp(0,1,1,1))
+
+local entts = {1,2,3}
+
+function hasComponent(e, component)
+    local components = components[component]
+    local componentExists = components[e]
+    return componentExists
+end
+
 
 function love.load()
+
+
+    --print("-x-x-x-x-x-")
+    --for i = 1,3,1 do
+        --print(hasComp(i, "position"))
+        --print(hasComp(i, "color"))
+    --end
+    --print("-x-x-x-x-x-")
 end
 
 function love.update(dt)
-    for _,ent in pairs(entts) do
-        ent.position.x = ent.position.x + 100 * dt
-    end
 end
 
 function love.draw()
-    
-    for _,ent in pairs(entts) do
-        
-        if(ent.color) then
-            love.graphics.setColor(
-                ent.color.r,
-                ent.color.g,
-                ent.color.b,
-                ent.color.a
-            )
-        else
-            love.graphics.setColor(1,0,1,1)
-        end
 
-        love.graphics.rectangle("fill", ent.position.x,ent.position.y,10,10)
-    end
+    --for i,compTable in pairs(components) do
+        --for k,comp in pairs(compTable) do
+            --for tk,tv in pairs(comp) do
+                --print(tk, tv)
+                --print("|")
+            --love.graphics.rectangle("fill", comp.position.x, comp.position.y,10,10)
+            --end
+        --end
+    --end
+    --print("---")
 
 end
 
